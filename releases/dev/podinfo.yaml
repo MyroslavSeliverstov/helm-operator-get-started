@@ -6,7 +6,7 @@ metadata:
   namespace: dev
   annotations:
     fluxcd.io/automated: "true"
-    filter.fluxcd.io/chart-image: epuakyiw1478t1:32177/helm-flux:dev-*
+    filter.fluxcd.io/chart-image: glob:dev-*
 spec:
   releaseName: podinfo-dev
   chart:
