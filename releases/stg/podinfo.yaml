@@ -14,7 +14,7 @@ spec:
     path: charts/podinfo
     ref: master
   values:
-    image: epuakyiw1478t1:32177/helm-flux:dev-szlnfzsv
+    image: epuakyiw1478t1:32177/helm-flux:stg-kthx9qwo
     replicaCount: 2
     hpa:
       enabled: true
