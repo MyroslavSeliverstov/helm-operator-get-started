@@ -1,0 +1,22 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: porter-test
+  namespace: porter
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:porter-dev-*
+spec:
+  releaseName: porter
+  chart:
+    git: git@github.com:MyroslavSeliverstov/helm-operator-get-started.git
+    path: charts/porter
+    ref: master
+  values:
+    image:
+      repository: quay.io/myroslavseliverstov/porter
+      tag: latest
+    imagePullSecrets: 
+    - name: quay
+    namespace: porter
