@@ -19,5 +19,3 @@ spec:
       tag: latest
     imagePullSecrets: 
     - name: quay
-
-
