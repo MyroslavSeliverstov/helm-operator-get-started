@@ -14,5 +14,5 @@ spec:
     path: charts/podinfo
     ref: master
   values:
-    image: quay.io/myroslavseliverstov/helm-flux:0.4.6
+    image: quay.io/myroslavseliverstov/helm-flux:0.4.7
     replicaCount: 3
