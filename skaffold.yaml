@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2alpha1
+kind: Config
+build:
+  tagPolicy:
+    gitCommit:
+      variant: AbbrevCommitSha
+  artifacts:
+  - image: quay.io/myroslavseliverstov/porter
+    context: porter
+#    kaniko:
+    docker:
+#      buildContext:
+#          localDir: {}
+#      cache:
+#        repo: quay.io/myroslavseliverstov/porter-cache
+      buildArgs:
+        BUNDLE_DIR: /cnab/app
+#  cluster:
+#    namespace: default
+#    dockerConfig:
+#      secretName: quaydc
+deploy:
+  helm:
+    releases:
+    - name: porter-helm
+      chartPath: charts/porter
+      namespace: default
+      values:
+        image: quay.io/myroslavseliverstov/porter
+      setValues:
+        imagePullSecrets[0].name: quay
