@@ -14,7 +14,7 @@ spec:
     path: charts/podinfo
     ref: master
   values:
-    image: quay.io/myroslavseliverstov/helm-flux:stg-9bdmpxiu
+    image: quay.io/myroslavseliverstov/helm-flux:stg-g5p3ywmf
     replicaCount: 2
     hpa:
       enabled: true
