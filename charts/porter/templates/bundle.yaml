@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  bundle: |
+    {"credentials":{"kubeconfig":{"path":"/root/.kube/config","required":true}},"custom":{"io.cnab.dependencies":null,"sh.porter":{"manifestDigest":"49df288bb264717357c57574e7486a791dccbe63ebcf47091de5ad76590e0ced"}},"definitions":{"IP_ADDRESS-output":{"type":"string"},"porter-debug-parameter":{"default":false,"description":"Print debug information from Porter when executing the bundle","type":"boolean"}},"description":"An example Porter bundle with Kubernetes","invocationImages":[{"image":"deislabs/porter-kubernetes:latest","imageType":"docker"}],"name":"PORTER_KUBE","outputs":{"IP_ADDRESS":{"definition":"IP_ADDRESS-output","path":"/cnab/app/outputs/IP_ADDRESS"}},"parameters":{"porter-debug":{"definition":"porter-debug-parameter","description":"Print debug information from Porter when executing the bundle","destination":{"env":"PORTER_DEBUG"}}},"schemaVersion":"v1.0.0","version":"0.1.0"}
+kind: ConfigMap
+metadata:
+  labels:
+{{ include "porter.labels" . | nindent 4 }}
+  name: bundle.json

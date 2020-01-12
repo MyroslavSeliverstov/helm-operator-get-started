@@ -1,0 +1,87 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-delete
+  name: {{ include "porter.fullname" . }}-delete
+  labels:
+    {{- include "porter.labels" . | nindent 4 }}
+spec:
+  backoffLimit: 6
+  completions: 1
+  parallelism: 1
+#  selector:
+#    matchLabels:
+  template:
+#    metadata:
+#      annotations:
+#      labels:
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "porter.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      restartPolicy: Never
+      containers:
+      - env:
+        - name: CNAB_ACTION
+          value: uninstall
+        - name: CNAB_BUNDLE_NAME
+          value: PORTER_KUBE
+        - name: CNAB_BUNDLE_VERSION
+          value: 0.1.0
+        - name: CNAB_INSTALLATION_NAME
+          value: PORTER_KUBE
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+        - name: PORTER_DEBUG
+          value: "false"
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        #epuakyiw1478t1:32177/porter-kube-test
+#        imagePullPolicy: IfNotPresent
+        name: {{ .Chart.Name }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        volumeMounts:
+        - mountPath: /cnab/bundle.json
+          name: bundle
+          subPath: bundle.json
+        - mountPath: /root/.kube/config
+          name: kubeconfig
+          subPath: config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+      - configMap:
+          defaultMode: 256
+          items:
+          - key: bundle
+            path: bundle.json
+          name: bundle.json
+          optional: false
+        name: bundle
+      - configMap:
+          defaultMode: 256
+          items:
+          - key: config
+            path: config
+          name: kubeconfig
+          optional: false
+        name: kubeconfig
