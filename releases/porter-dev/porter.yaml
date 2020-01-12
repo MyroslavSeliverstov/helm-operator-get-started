@@ -2,8 +2,8 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: porter-test
-  namespace: porter
+  name: porter-dev
+  namespace: porter-dev
   annotations:
     fluxcd.io/automated: "true"
     filter.fluxcd.io/chart-image: glob:porter-dev-*
@@ -14,7 +14,7 @@ spec:
     path: charts/porter
     ref: master
   values:
-    image: quay.io/myroslavseliverstov/porter:latest
+    image: quay.io/myroslavseliverstov/porter:dev-jauyqjn1
     imagePullSecrets: 
     - name: quay
     namespace: porter

@@ -4,10 +4,8 @@
 
 replicaCount: 1
 
-image:
-  repository: epuakyiw1478t1:32177/porter-kube-test
-  tag: latest
-  pullPolicy: IfNotPresent
+image: epuakyiw1478t1:32177/porter-kube-test:latest
+pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""

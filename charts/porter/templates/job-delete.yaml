@@ -44,7 +44,7 @@ spec:
           value: "false"
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image }}"
         #epuakyiw1478t1:32177/porter-kube-test
 #        imagePullPolicy: IfNotPresent
         name: {{ .Chart.Name }}
