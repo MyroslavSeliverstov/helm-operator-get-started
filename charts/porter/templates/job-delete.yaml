@@ -6,7 +6,7 @@ metadata:
     # job is considered part of the release.
     "helm.sh/hook": pre-delete
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
-  name: {{ include "porter.fullname" . }}-{{ randNum 5 | b64enc | quote }}-delete
+  name: {{ include "porter.fullname" . }}-{{ randNumeric 5 }}-delete
   labels:
     {{- include "porter.labels" . | nindent 4 }}
 spec:
