@@ -17,4 +17,5 @@ spec:
     image:
       repository: quay.io/myroslavseliverstov/porter
       tag: latest
-    imagePullSecrets: "quay"
+    imagePullSecrets: 
+    - quay
