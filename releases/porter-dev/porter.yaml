@@ -6,7 +6,7 @@ metadata:
   namespace: porter-dev
   annotations:
     fluxcd.io/automated: "true"
-    filter.fluxcd.io/chart-image: glob:porter-dev-*
+    filter.fluxcd.io/chart-image: glob:dev-*
 spec:
   releaseName: porter
   chart:
@@ -14,7 +14,7 @@ spec:
     path: charts/porter
     ref: master
   values:
-    image: quay.io/myroslavseliverstov/porter:porter-dev-jfxfaznf
+    image: quay.io/myroslavseliverstov/porter:dev-vbh2ha5e
     imagePullSecrets: 
     - name: quay
     namespace: porter
