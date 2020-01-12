@@ -12,7 +12,7 @@ spec:
   chart:
     git: git@github.com:MyroslavSeliverstov/helm-operator-get-started.git
     path: charts/porter
-    ref: master
+    ref: dev
   values:
     image: quay.io/myroslavseliverstov/porter:dev-qackfhgg
     imagePullSecrets:
