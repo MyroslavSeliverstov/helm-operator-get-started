@@ -18,4 +18,4 @@ spec:
       repository: quay.io/myroslavseliverstov/porter
       tag: latest
     imagePullSecrets: 
-    - quay
+    - name: quay
