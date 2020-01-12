@@ -14,7 +14,7 @@ spec:
     path: charts/porter
     ref: master
   values:
-    image: quay.io/myroslavseliverstov/porter:latest
+    image: quay.io/myroslavseliverstov/porter-dev-jfxfaznf
     imagePullSecrets: 
     - name: quay
     namespace: porter
