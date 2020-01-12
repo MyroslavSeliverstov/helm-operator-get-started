@@ -5,6 +5,7 @@ metadata:
     # This is what defines this resource as a hook. Without this line, the
     # job is considered part of the release.
     "helm.sh/hook": pre-delete
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   name: {{ include "porter.fullname" . }}-delete
   labels:
     {{- include "porter.labels" . | nindent 4 }}
