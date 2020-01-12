@@ -15,7 +15,6 @@ spec:
   parallelism: 1
 #  selector:
 #    matchLabels:
-  ttlSecondsAfterFinished: 10
   template:
 #    metadata:
 #      annotations:
