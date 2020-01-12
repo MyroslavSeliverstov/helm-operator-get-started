@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   annotations:
-  name: {{ include "porter.fullname" . }}
+  name: {{ include "porter.fullname" . }}-{{ randAlphaNum 5 | b64enc | quote }}
   labels:
     {{- include "porter.labels" . | nindent 4 }}
 spec:
