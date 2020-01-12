@@ -19,3 +19,4 @@ spec:
       tag: latest
     imagePullSecrets: 
     - name: quay
+    namespace: porter
