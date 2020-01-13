@@ -7,18 +7,9 @@ build:
   artifacts:
   - image: myroslavseliverstov/porter
     context: porter
-#    kaniko:
     docker:
-#      buildContext:
-#          localDir: {}
-#      cache:
-#        repo: myroslavseliverstov/porter-cache
       buildArgs:
         BUNDLE_DIR: /cnab/app
-#  cluster:
-#    namespace: default
-#    dockerConfig:
-#      secretName: dockerdc
 deploy:
   helm:
     releases:
@@ -29,6 +20,28 @@ deploy:
         image: myroslavseliverstov/porter
       setValues:
         imagePullSecrets[0].name: docker
+        
+profiles:
+  - name: k8s
+    build:
+      tagPolicy:
+        gitCommit:
+          variant: AbbrevCommitSha
+      artifacts:
+      - image: myroslavseliverstov/porter
+        context: porter
+        kaniko:
+          buildContext:
+            localDir: {}
+          cache:
+            repo: myroslavseliverstov/porter-cache
+          buildArgs:
+            BUNDLE_DIR: /cnab/app
+      cluster:
+        namespace: default
+        dockerConfig:
+          secretName: dockerdc
+
 
 #profiles:
 #  - name: dev
