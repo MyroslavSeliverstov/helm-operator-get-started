@@ -5,20 +5,20 @@ build:
     gitCommit:
       variant: AbbrevCommitSha
   artifacts:
-  - image: quay.io/myroslavseliverstov/porter
+  - image: myroslavseliverstov/porter
     context: porter
 #    kaniko:
     docker:
 #      buildContext:
 #          localDir: {}
 #      cache:
-#        repo: quay.io/myroslavseliverstov/porter-cache
+#        repo: myroslavseliverstov/porter-cache
       buildArgs:
         BUNDLE_DIR: /cnab/app
 #  cluster:
 #    namespace: default
 #    dockerConfig:
-#      secretName: quaydc
+#      secretName: dockerdc
 deploy:
   helm:
     releases:
@@ -26,6 +26,18 @@ deploy:
       chartPath: charts/porter
       namespace: default
       values:
-        image: quay.io/myroslavseliverstov/porter
+        image: myroslavseliverstov/porter
       setValues:
-        imagePullSecrets[0].name: quay
+        imagePullSecrets[0].name: docker
+
+#profiles:
+#  - name: dev
+#    patches:
+#      - op: replace
+#        path: /build/tagPolicy
+#        value: { envTemplate:  { template: "{{ .IMAGE_NAME }}:dev-{{ AbbrevCommitSha }}" } }
+#  - name: prod
+#    patches:
+#      - op: replace
+#        path: /build/tagPolicy
+#        value: { envTemplate:  { template: "{{ .IMAGE_NAME }}:dev-{{ randNumeric 5 }}" } }

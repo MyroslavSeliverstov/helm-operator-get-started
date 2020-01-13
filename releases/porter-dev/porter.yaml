@@ -14,7 +14,7 @@ spec:
     path: charts/porter
     ref: dev
   values:
-    image: quay.io/myroslavseliverstov/porter:dev-f1fe4de
+    image: myroslavseliverstov/porter:dev-7949d6
     imagePullSecrets:
-    - name: quay
+    - name: docker
     namespace: porter

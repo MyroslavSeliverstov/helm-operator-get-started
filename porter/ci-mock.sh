@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-repository="quay.io/myroslavseliverstov/porter"
+repository="myroslavseliverstov/porter"
 commit=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1 | awk '{print tolower($0)}')
 build_num=( $(<build_numb.txt) )
 build_num=$(( build_num + 1 ))
