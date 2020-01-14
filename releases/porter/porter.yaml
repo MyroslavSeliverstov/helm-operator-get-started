@@ -14,7 +14,7 @@ spec:
     path: charts/porter
     ref: master
   values:
-    image: myroslavseliverstov/porter:dev-12812ff
+    image: myroslavseliverstov/porter:110262a
     imagePullSecrets:
     - name: docker
     namespace: porter
