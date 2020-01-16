@@ -26,6 +26,8 @@ spec:
       restartPolicy: Never
       containers:
       - env:
+        - name: test
+          value: test
         - name: CNAB_ACTION
           value: install
         - name: CNAB_BUNDLE_NAME
