@@ -15,7 +15,7 @@ deploy:
     releases:
     - name: porter-helm
       chartPath: charts/porter
-      namespace: default
+      namespace: porter-local
       values:
         image: myroslavseliverstov/porter
       setValues:
@@ -38,7 +38,7 @@ profiles:
           buildArgs:
             BUNDLE_DIR: /cnab/app
       cluster:
-        namespace: default
+        namespace: porter-local
         dockerConfig:
           secretName: dockerdc
 
